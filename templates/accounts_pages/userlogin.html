@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user login</title>
+</head>
+<body>
+<h1> user login </h1>
+{{ msg }}
+<form action="{% url "accounts:userlogin" %}" method="post">
+    {% csrf_token %}
+    username: <input type="text" name = "username"><br>
+    password: <input type="text" name = "password"><br>
+    <input type="submit" value="login">
+</form>
+<a href="{% url "accounts:userregister" %}"> register </a>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post project</title>
+    <script>
+        pagenumber = 0 {# page 的数量 #}
+
+        {# 当 addpage 按钮被点击时就调用该函数 #}
+        function addpicture() {
+            filename = pagenumber.toString() {# 图片的 name #}
+            textname = "t" + pagenumber.toString() {# 文字的 name， 前面加个t以便与图片区分 #}
+
+            {# 找到ul，在里面放入东西 #}
+            pages = document.getElementById("pages")
+
+            {#目标：往ul里面放入以下东西#}
+            {#<li>#}
+            {#    text: <input type="text" name="detailtext"> <br>#}
+            {#    file: <input type="file" name="file"> <br>#}
+            {#</li>    #}
+
+            {#创建li元素#}
+            var li = document.createElement("li")
+
+            {#text: #}
+            var createtext = document.createTextNode("text:  ")
+
+            {#<input type="text" name="detailtext">#}
+            var pagetext = document.createElement("input")
+            pagetext.setAttribute("type", "text")
+            pagetext.setAttribute("name", textname)
+
+            {#<br>#}
+            var br = document.createElement("br")
+
+            {#file: #}
+            var createfile = document.createTextNode("file:  ")
+
+            {#<input type="file" name="file">#}
+            var pagefile = document.createElement("input")
+            pagefile.setAttribute("type", "file")
+            pagefile.setAttribute("name", filename)
+
+            {#把上面的东西依次加进li里面#}
+            li.appendChild(createtext)
+            li.appendChild(pagetext)
+            li.appendChild(br)
+            li.appendChild(createfile)
+            li.appendChild(pagefile)
+
+            {#把li加进ul#}
+            pages.appendChild(li)
+            pagenumber += 1
+            pagecount = document.getElementById("pagecount")
+
+            {#更新记录一下page的数量#}
+            pagecount.setAttribute("value", pagenumber)
+        }
+    </script>
+</head>
+<body>
+<h1> {{ username }}, Post your project here </h1>
+<form action="{% url "post:postproject" %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    title: <input type="text" name="title"> <br>
+    {{ form.title.errors }}
+    description: <input type="text" name="description"> <br>
+    cover: <input type="file" name="cover"> <br>
+    <div id="addpage" onclick="addpicture()">add a page</div>
+
+    <ul id="pages">
+    </ul>
+
+    <input type="hidden" value="0" name="pagecount" id="pagecount">
+    <input type="submit">
+</form>
+</body>
+</html>

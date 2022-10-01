@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+<form action="{% url "userinfo:editaccount" %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <img id="profile" src="{% static user.profileaddress %}" style="width:100px; height:100px"><br>
+    change profile: <input type="file" name="newprofile"><br>
+    username: <input type="text" name="username" value={{ user.username }} placeholder={{ user.username }}><br>
+    {{ form.username.errors }}
+    password: <input type="text" name="password" value={{ user.password }} placeholder={{ user.password }}><br>
+    {{ form.password.errors }}
+    confirm your password: <input type="text" name="confirm" value={{ user.password }} placeholder={{ user.password }}><br>
+    {{ form.confirm.errors }}
+    <input type="submit" value="apply">
+</form>
+
+<a href="{% url "userinfo:myinfo" %}"> cancel </a>
+</body>
+</html>

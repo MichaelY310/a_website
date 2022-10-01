@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project</title>
+    {% load static %}
+</head>
+<body>
+projectid: {{ projectid }}
+<h1>{{ title }}</h1>
+{{ description }}
+
+<div id="creator">
+    creator: {{ creator.username }}
+</div>
+
+{#<img src="{% static cover %}" style="width:100px; height:100px"><br>#}
+
+{% for page in pages %}
+    {% if page.0 != "" %}
+        {{ page.0 }}
+        <br>
+    {% endif %}
+
+    {% if page.1 != "" %}
+        <img src="{% static page.1 %}" style="width:100px; height:100px">
+        <br>
+    {% endif %}
+    <hr>
+{% endfor %}
+
+</body>
+</html>

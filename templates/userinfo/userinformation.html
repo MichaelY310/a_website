@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+<a href="{% url "userinfo:editaccount" %}"> edit my account </a><br>
+<img src="{% static user.profileaddress %}" style="width:100px; height:100px"><br>
+<h1>username: {{ user.username }} </h1><br>
+userid: {{ user.userid }} <br>
+email: {{ user.email }} <br>
+phone: {{ user.phonenumber }} <br>
+cookiepoints: {{ user.cookiepoints }} <br>
+level: {{ user.level }} <br>
+myprojects: {{ user.myprojects }}
+<br>
+<a href="{% url "userinfo:space" user.userid %}"> my space </a>
+</body>
+</html>

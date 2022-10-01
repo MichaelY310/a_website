@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>all projects</title>
+    {% load static %}
+    <script>
+        function getcover(project) {
+            return "/projects/" + project.projectid.toString() + "/cover.png"
+        }
+    </script>
+</head>
+<body>
+{% for project in pager.object_list %}
+    <div id={{ project.projectid }}>
+        <a href="{% url "displayprojects:project" project.projectid %}">
+            <img src="{% static project.coveraddress %}" style="width:80px; height:80px">
+            <h2> {{ project.title }} </h2>
+        </a>
+        <hr>
+    </div>
+    <br>
+{% endfor %}
+
+{% for page in paginator.page_range %}
+    <a href="{% url "displayprojects:allprojects" page=page %}">{{ page }}</a>
+{% endfor %}
+</body>
+</html>

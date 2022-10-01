@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>space</title>
+    {% load static %}
+</head>
+<body>
+<img src="{% static user.profileaddress %}" style="width:100px; height:100px"><br>
+<h1>{{ user.username }} </h1>
+{{ user.userid }} <br>
+lv {{ user.level }} <br>
+<br>
+<hr>
+<br>
+<h2>user's projects</h2><br>
+{% for project in projectlist %}
+    <div id={{ project.projectid }}>
+        <a href="{% url "displayprojects:project" project.projectid %}">
+            <img src="{% static project.coveraddress %}" style="width:80px; height:80px">
+            <h2> {{ project.title }} </h2>
+        </a>
+        <hr>
+    </div>
+    <br>
+{% endfor %}
+</body>
+</html>

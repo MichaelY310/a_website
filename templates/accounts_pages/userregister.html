@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user register</title>
+</head>
+<body>
+<h1> user register </h1>
+<form action="{% url "accounts:userregister" %}" method="post">
+    {% csrf_token %}
+    {{ form.captcha }}{{ form.captcha.errors }}<br>
+    username: <input type="text" name="username"><br>
+    {{ form.username.errors }}
+    password: <input type="text" name="password"><br>
+    {{ form.password.errors }}
+    confirm your password: <input type="text" name="confirm"><br>
+    {{ form.confirm.errors }}
+    email: <input type="text" name="email"><br>
+    {{ form.email.errors }}
+    <input type="submit" value="register">
+</form>
+<a href="{% url "accounts:userlogin" %}"> login </a>
+</body>
+</html>

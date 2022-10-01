@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Your project is posted successfully!!! </h1>
+<h1>your projectid is {{ projectid }}</h1>
+<a href="{% url "displayprojects:project" projectid %}"> here's the link of your project </a>
+<a href="{% url "post:postproject" %}"> create another project </a>
+</body>
+</html>
